@@ -91,6 +91,22 @@ const struct kernelcache_addresses kcs[] = {
         .vm_page_array_beginning_addr = 0xFFFFFFF0077FE9D8,
         .vm_page_array_ending_addr = 0xFFFFFFF00A34B778,
         .vm_first_phys_ppnum = 0xFFFFFFF00A34B780,
+    },
+    // From the iOS 16.1.1 kernelcache for the iPad 9th Gen (iPad12,1).
+    {
+        .kernel_base = 0xfffffff007004000,
+        .vn_kqfilter = 0xfffffff007efe210,
+        .ptov_table = 0xfffffff0077f78a8,
+        .gVirtBase = 0xfffffff007841af8,
+        .gPhysBase = 0xfffffff007843910,
+        .gPhysSize = 0xfffffff007843918,
+        .perfmon_devices = 0xfffffff00a2c02f0,
+        .perfmon_dev_open = 0xfffffff007eabfe4,
+        .cdevsw = 0xfffffff00a285150,
+        .vm_pages = 0xfffffff0077f46d0,
+        .vm_page_array_beginning_addr = 0xfffffff0077f6858,
+        .vm_page_array_ending_addr = 0xfffffff00a2bf778,
+        .vm_first_phys_ppnum = 0xfffffff00a2bf780,
     }
 };
 
@@ -167,6 +183,11 @@ void perf_init(struct kfd* kfd)
     }
 
     switch (*(u64*)(&kfd->info.env.osversion)) {
+        case ios_16_1_1: {
+            printf("kfd->perf.kernelcache_index = 5\n");
+            kfd->perf.kernelcache_index = 5;
+            break;
+        }
         case ios_16_1_2: {
             printf("kfd->perf.kernelcache_index = 4\n");
             kfd->perf.kernelcache_index = 4;
