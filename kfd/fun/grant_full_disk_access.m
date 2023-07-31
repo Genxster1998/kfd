@@ -8,7 +8,7 @@
 // WDBFontOverwrite
 // Also, set an NSAppleMusicUsageDescription in Info.plist (can be anything)
 // Please don't call this code on iOS 14 or below
-// (This temporarily overwrites tccd, and on iOS 14 and above changes do not revert on reboot)
+// (This temporarily overwrites tccd, and on iOS 14 and below changes do not revert on reboot)
 #import "grant_full_disk_access.h"
 #import "helpers.h"
 #import "vm_unaligned_copy_switch_race.h"
