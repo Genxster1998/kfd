@@ -5,6 +5,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    init() {
+    }
+    
     @State private var kfd: UInt64 = 0
 
     private var puaf_pages_options = [16, 32, 64, 128, 256, 512, 1024, 2048]
@@ -56,7 +59,7 @@ struct ContentView: View {
                         Button("kopen") {
                             puaf_pages = puaf_pages_options[puaf_pages_index]
                             kfd = do_kopen(UInt64(puaf_pages), UInt64(puaf_method), UInt64(kread_method), UInt64(kwrite_method))
-                            do_fun(kfd)
+                            do_fun()
                         }.disabled(kfd != 0).frame(minWidth: 0, maxWidth: .infinity)
                         Button("kclose") {
                             do_kclose(kfd)
